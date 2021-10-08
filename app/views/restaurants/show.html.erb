@@ -1,0 +1,29 @@
+<div class="container">
+  <h1><%= @restaurant.name %></h1>
+
+  <p>Address | <%= @restaurant.address %></p>
+  <p>Phone number | <%= @restaurant.phone_number %></p>
+  <p>Category | <%= @restaurant.category.capitalize %></p>
+
+<div class="card">
+  <div class="card-header">
+    <h4>Reviews</h4>
+  </div>
+  <ul class="list-group list-group-flush">
+    <% @restaurant.reviews.each do |review| %>
+      <li class="list-group-item"><%= review.content %> > Rating: <%= review.rating %></li>
+    <% end  %>
+  </ul>
+</div>
+
+  <div class="card mt-3" >
+  <p class="card-header"><strong>Add a review</strong></p>
+    <div class="card-body">
+      <%= simple_form_for [@restaurant, @review] do |f| %>
+        <%= f.input :content %>
+        <%= f.input :rating %>
+        <%= f.submit %>
+      <% end %>
+    </div>
+  </div>
+</div>
